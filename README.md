@@ -508,6 +508,7 @@ All revenue splits are recorded on Stellar blockchain:
 | **Backend API** | https://magentix-app.onrender.com |
 | **Health Check** | https://magentix-app.onrender.com/health |
 | **Source Code** | https://github.com/0xyudz/MagentiX |
+| **Telegram Bot** | https://t.me/stellaragentbot | CMD: /bind, /status, /setup, /travel, /logs
 
 ### Demo Flow
 
