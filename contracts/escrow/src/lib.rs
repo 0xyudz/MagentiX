@@ -21,7 +21,7 @@ pub enum DataKey {
 
 #[contractimpl]
 impl EscrowContract {
-    /// Agent deposit dana ke escrow
+    /// Agent deposit to escrow
     pub fn create_payment(env: Env, payment_id: Symbol, agent: Address, merchant: Address, amount: i128) -> Symbol {
         agent.require_auth();
         
@@ -38,12 +38,12 @@ impl EscrowContract {
         payment_id
     }
 
-    /// Merchant release dana setelah service delivered
+    /// Merchant release 
     pub fn release_payment(env: Env, payment_id: Symbol, merchant: Address) {
         merchant.require_auth();
         
         let mut payment: Payment = env.storage().persistent()
-            .get(&DataKey::Payment(payment_id.clone())) // ✅ FIX: Clone di sini
+            .get(&DataKey::Payment(payment_id.clone())) 
             .unwrap_or_else(|| panic!("Payment not found"));
         
         if payment.released {
@@ -55,12 +55,12 @@ impl EscrowContract {
         }
         
         payment.released = true;
-        // ✅ FIX: Clone payment_id sebelum dipakai lagi di events
+        
         env.storage().persistent().set(&DataKey::Payment(payment_id.clone()), &payment);
-        env.events().publish(("payment_released", payment_id.clone()), merchant); // ✅ Clone di sini
+        env.events().publish(("payment_released", payment_id.clone()), merchant); 
     }
 
-    /// Agent refund jika service gagal
+    
     pub fn refund(env: Env, payment_id: Symbol, agent: Address) {
         agent.require_auth();
         
@@ -76,6 +76,6 @@ impl EscrowContract {
             panic!("Unauthorized");
         }
         
-        env.events().publish(("payment_refunded", payment_id.clone()), agent); // ✅ Clone di sini
+        env.events().publish(("payment_refunded", payment_id.clone()), agent); 
     }
 }
