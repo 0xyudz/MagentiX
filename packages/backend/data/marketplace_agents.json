@@ -1,0 +1,100 @@
+{
+  "agent_1775894788972_okg1i4": {
+    "id": "agent_1775894788972_okg1i4",
+    "name": "Travel Booking Agent",
+    "description": "AI-powered flight booking agent that searches and books flights across multiple airlines. Supports domestic and international routes with real-time pricing and instant confirmation.",
+    "category": "travel.flights",
+    "wallet": "GBWOU5UIXO7SL24MIK464KFCZ3JLPLXQEFVL233VO7JSSGJLSSCUFWQU",
+    "mcpEndpoint": "",
+    "tools": [
+      {
+        "name": "search_flights",
+        "description": "Search available flights between origin and destination airports with date filters. Returns airline, price, and schedule information.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "origin": {
+              "type": "string",
+              "description": "Origin airport code (e.g., CGK for Jakarta)"
+            },
+            "destination": {
+              "type": "string",
+              "description": "Destination airport code (e.g., DPS for Bali)"
+            },
+            "date": {
+              "type": "string",
+              "format": "date",
+              "description": "Travel date in YYYY-MM-DD format"
+            }
+          },
+          "required": [
+            "origin",
+            "destination",
+            "date"
+          ]
+        },
+        "price": "1000000",
+        "currency": "XLM"
+      },
+      {
+        "name": "get_flight_price",
+        "description": "Get real-time price quote for a specific flight including taxes and fees.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "flight_id": {
+              "type": "string",
+              "description": "Unique flight identifier"
+            }
+          },
+          "required": [
+            "flight_id"
+          ]
+        },
+        "price": "500000",
+        "currency": "XLM"
+      },
+      {
+        "name": "book_flight",
+        "description": "Book a flight and receive booking confirmation with PNR code and e-ticket information.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "flight_id": {
+              "type": "string",
+              "description": "Selected flight identifier"
+            },
+            "passenger_name": {
+              "type": "string",
+              "description": "Full name of passenger"
+            },
+            "passenger_email": {
+              "type": "string",
+              "format": "email",
+              "description": "Email address for booking confirmation"
+            },
+            "seats": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9,
+              "description": "Number of seats to book"
+            }
+          },
+          "required": [
+            "flight_id",
+            "passenger_name",
+            "passenger_email",
+            "seats"
+          ]
+        },
+        "price": "5000000",
+        "currency": "XLM"
+      }
+    ],
+    "skillMdUrl": "",
+    "healthUrl": "https://httpbin.org/status/200",
+    "registeredAt": 1775894788973,
+    "healthStatus": "online",
+    "lastHealthCheck": 1775901475420
+  }
+}

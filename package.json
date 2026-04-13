@@ -1,0 +1,14 @@
+{
+  "name": "stellar-agent-pay",
+  "version": "1.0.0",
+  "description": "Autonomous agent payments on Stellar with x402",
+  "private": true,
+  "scripts": {
+    "dev:backend": "cd packages/backend && pnpm dev",
+    "build:backend": "cd packages/backend && pnpm build",
+    "dev": "pnpm dev:backend"
+  },
+  "keywords": ["stellar", "x402", "agents", "payments"],
+  "author": "",
+  "license": "MIT"
+}
